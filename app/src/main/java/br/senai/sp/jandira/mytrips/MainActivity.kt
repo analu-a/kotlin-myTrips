@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,9 +22,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AdUnits
 import androidx.compose.material.icons.filled.AddAPhoto
+import androidx.compose.material.icons.filled.AddLocation
 import androidx.compose.material.icons.filled.AppSettingsAlt
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.PermIdentity
 import androidx.compose.material.icons.filled.Person
@@ -46,6 +50,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -525,5 +531,70 @@ fun Cadastro(){
 fun CadastroPreview(){
     MyTripsTheme {
         Cadastro()
+    }
+}
+
+@Composable
+fun HomePage(){
+    Surface (
+    modifier = Modifier
+        .fillMaxWidth()
+    ){
+Image(
+    painter = painterResource(
+        id = R.drawable.fotoparis),
+    contentDescription = "Uma foto de paris",
+    contentScale = ContentScale.Crop
+)
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 14.dp, top = 10.dp),
+            horizontalAlignment = Alignment.End
+        ){
+            Card (
+                modifier = Modifier
+                    .size(width = 70.dp, height = 70.dp),
+                shape = CircleShape
+            ){
+                Image(painter = painterResource(
+                    id = R.drawable.user),
+                    contentDescription = "Foto do usuário",
+                    modifier = Modifier
+                        .fillMaxSize()
+                )
+            }
+            Text(text = "Suzana Hoffs",
+                color = Color.White,
+                fontWeight = FontWeight.Light,
+                fontSize = 14.sp
+            )
+        }
+        Column (
+            modifier = Modifier
+                .height(220.dp)
+
+        ){
+            Row {
+                Icon(imageVector = Icons.Default.LocationOn , contentDescription = "")
+                Text(
+                    text = "You're in Paris"
+                )
+            }
+            Text(text = "My Trips")
+
+        }
+    }
+
+
+
+
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun  HomePagePreview(){
+    MyTripsTheme {
+        HomePage()
     }
 }
